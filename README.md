@@ -125,6 +125,7 @@ rspec ./spec/stack_spec.rb:8 # Stack#push should eq #<Stack:0x00007fd42f158578>
 ## No.4 実装する
 
 ```ruby
+# lib/stack.rb
 class Stack
   def push(value)
     self
@@ -140,4 +141,97 @@ end
 
 Finished in 0.00217 seconds (files took 0.10744 seconds to load)
 1 example, 0 failures
+```
+
+## No.5 前提条件のある spec で Fake it
+
+```ruby
+# spec/stack_spec.rb
+...
+  context "1 を push 済みの stack" do
+    before { stack.push 1 }
+    describe "length が 1" do
+      subject { stack.length }
+      it { expect(subject).to eq 1 }
+    end
+  end
+...
+```
+
+### 実行する
+
+```
+$ rspec spec/stack_spec.rb
+.F
+
+Failures:
+
+  1) Stack 1 を push 済みの stack length が 1
+     Failure/Error: subject { stack.length }
+
+     NoMethodError:
+       undefined method `length' for #<Stack:0x00007fc82d8fe308>
+     # ./spec/stack_spec.rb:14:in `block (4 levels) in <top (required)>'
+     # ./spec/stack_spec.rb:15:in `block (4 levels) in <top (required)>'
+
+Finished in 0.00295 seconds (files took 0.10604 seconds to load)
+2 examples, 1 failure
+
+Failed examples:
+
+rspec ./spec/stack_spec.rb:15 # Stack 1 を push 済みの stack length が 1
+```
+
+### Error を Failure にする
+
+```ruby
+# lib/stack.rb
+...
+  def length
+  end
+...
+```
+
+### 実行する
+
+```sh
+ $ rspec spec/stack_spec.rb
+.F
+
+Failures:
+
+  1) Stack 1 を push 済みの stack length が 1 should eq 1
+     Failure/Error: it { expect(subject).to eq 1 }
+
+       expected: 1
+            got: nil
+
+       (compared using ==)
+     # ./spec/stack_spec.rb:15:in `block (4 levels) in <top (required)>'
+
+Finished in 0.01297 seconds (files took 0.10957 seconds to load)
+2 examples, 1 failure
+
+Failed examples:
+
+rspec ./spec/stack_spec.rb:15 # Stack 1 を push 済みの stack length が 1 should eq 1
+```
+
+### Fake it(仮実装)
+
+```ruby
+# lib/stack.rb
+  def length
+    1
+  end
+```
+
+### 実行する
+
+```sh
+ $ rspec spec/stack_spec.rb
+..
+
+Finished in 0.00296 seconds (files took 0.108 seconds to load)
+2 examples, 0 failures
 ```
