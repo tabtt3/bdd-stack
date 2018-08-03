@@ -39,3 +39,10 @@ No examples found.
 Finished in 0.00042 seconds (files took 0.29251 seconds to load)
 0 examples, 0 failures
 ```
+
+## No.1 Stack の仕様を考える
+
+1. push 出来る?
+2. pop 出来る?
+3. length を取得出来る?
+4. empty? かどうかを尋ねられる？
