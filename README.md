@@ -235,3 +235,76 @@ rspec ./spec/stack_spec.rb:15 # Stack 1 を push 済みの stack length が 1 sh
 Finished in 0.00296 seconds (files took 0.108 seconds to load)
 2 examples, 0 failures
 ```
+
+## No.6 前提条件を増やして実実装
+
+```
+# spec/stack_spec.rb
+...
+  context "1 と 5 を push 済みの stack" do
+    before do
+      stack.push 1
+      stack.push 5
+    end
+    subject { stack.length }
+    describe "length が 2" do
+      it { expect(subject).to eq 2 }
+    end
+  end
+...
+```
+
+### 実行する
+
+```sh
+ $ rspec spec/stack_spec.rb
+..F
+
+Failures:
+
+  1) Stack 1 と 5 を push 済みの stack length が 2 should eq 2
+     Failure/Error: it { expect(subject).to eq 2 }
+
+       expected: 2
+            got: 1
+
+       (compared using ==)
+     # ./spec/stack_spec.rb:26:in `block (4 levels) in <top (required)>'
+
+Finished in 0.01281 seconds (files took 0.10742 seconds to load)
+3 examples, 1 failure
+
+Failed examples:
+
+rspec ./spec/stack_spec.rb:26 # Stack 1 と 5 を push 済みの stack length が 2 should eq 2
+```
+
+#### Failure を Error にして実実装を行なう
+
+```ruby
+# lib/stack.rb
+class Stack
+  def initialize
+    @buffer = []
+  end
+
+  def push(value)
+    @buffer.push(value)
+    self
+  end
+
+  def length
+    @buffer.length
+  end
+end
+```
+
+### 実行する
+
+```sh
+ $ rspec spec/stack_spec.rb
+...
+
+Finished in 0.00312 seconds (files took 0.10855 seconds to load)
+3 examples, 0 failures
+```

@@ -15,4 +15,15 @@ RSpec.describe Stack do
       it { expect(subject).to eq 1 }
     end
   end
+
+  context "1 と 5 を push 済みの stack" do
+    before do
+      stack.push 1
+      stack.push 5
+    end
+    subject { stack.length }
+    describe "length が 2" do
+      it { expect(subject).to eq 2 }
+    end
+  end
 end

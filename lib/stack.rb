@@ -1,9 +1,14 @@
 class Stack
+  def initialize
+    @buffer = []
+  end
+
   def push(value)
+    @buffer.push(value)
     self
   end
 
   def length
-    1
+    @buffer.length
   end
 end
