@@ -121,3 +121,23 @@ Failed examples:
 
 rspec ./spec/stack_spec.rb:8 # Stack#push should eq #<Stack:0x00007fd42f158578>
 ```
+
+## No.4 実装する
+
+```ruby
+class Stack
+  def push(value)
+    self
+  end
+end
+```
+
+### 実行する
+
+```sh
+ $ rspec spec/stack_spec.rb
+.
+
+Finished in 0.00217 seconds (files took 0.10744 seconds to load)
+1 example, 0 failures
+```
