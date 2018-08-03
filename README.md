@@ -308,3 +308,44 @@ end
 Finished in 0.00312 seconds (files took 0.10855 seconds to load)
 3 examples, 0 failures
 ```
+
+## No.7 spec の書き方がまずかったのでリファクタリングする
+
+```ruby
+# spec/stack_spec.rb
+require 'spec_helper'
+
+RSpec.describe Stack do
+  let(:stack) { Stack.new }
+
+  describe "#push" do
+    subject { stack.push 1 }
+    it { expect(subject).to eq stack }
+  end
+
+  describe "#length" do
+    subject { stack.length }
+    context "1 を push 済みの stack" do
+      before { stack.push 1 }
+      it { expect(subject).to eq 1 }
+    end
+    context "1 と 5 を push 済みの stack" do
+      before do
+        stack.push 1
+        stack.push 5
+      end
+      it { expect(subject).to eq 2 }
+    end
+  end
+end
+```
+
+### 実行する
+
+```
+ $ rspec spec/stack_spec.rb
+...
+
+Finished in 0.00336 seconds (files took 0.11113 seconds to load)
+3 examples, 0 failures
+```
