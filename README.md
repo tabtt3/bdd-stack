@@ -86,3 +86,38 @@ Failed examples:
 
 rspec ./spec/stack_spec.rb:8 # Stack#push
 ```
+
+## No.3 Error を Failure にする
+
+```ruby
+# lib/stack.rb
+class Stack
+  def push(value)
+  end
+end
+```
+
+### 実行する
+
+```sh
+ $ rspec spec/stack_spec.rb
+F
+
+Failures:
+
+  1) Stack#push should eq #<Stack:0x00007fd42f158578>
+     Failure/Error: it { expect(subject).to eq stack }
+
+       expected: #<Stack:0x00007fd42f158578>
+            got: nil
+
+       (compared using ==)
+     # ./spec/stack_spec.rb:8:in `block (3 levels) in <top (required)>'
+
+Finished in 0.02387 seconds (files took 0.25895 seconds to load)
+1 example, 1 failure
+
+Failed examples:
+
+rspec ./spec/stack_spec.rb:8 # Stack#push should eq #<Stack:0x00007fd42f158578>
+```
