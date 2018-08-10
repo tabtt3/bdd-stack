@@ -349,3 +349,9 @@ end
 Finished in 0.00336 seconds (files took 0.11113 seconds to load)
 3 examples, 0 failures
 ```
+
+## 課題
+
+- pop を BDD で実装する
+- その他必要な機能があると思ったら実装する
+- https://github.com/jiraffeinc/bdd-csv-import をやる
