@@ -10,6 +10,7 @@ class Stack
 
   def pop
     raise StandardError if empty?
+
     @buffer.pop
   end
 

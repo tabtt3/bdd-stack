@@ -46,6 +46,15 @@ RSpec.describe Stack do
       end
       it { expect(subject).to eq 2 }
     end
+
+    context "1 と 5 を push したあと 1度 pop したstack" do
+      before do
+        stack.push 1
+        stack.push 5
+        stack.pop
+      end
+      it { expect(subject).to eq 1 }
+    end
   end
 
   describe "#pop" do
