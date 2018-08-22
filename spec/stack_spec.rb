@@ -65,4 +65,20 @@ RSpec.describe Stack do
     end
   end
 
+  describe "#empty?" do
+    subject { stack.empty? }
+
+    context "空の stack" do
+      it { expect(subject).to eq true }
+    end
+
+    context "1 と 5 を push済みのstack" do
+      before do
+        stack.push 1
+        stack.push 5
+      end
+
+      it { expect(subject).to eq false }
+    end
+  end
 end
