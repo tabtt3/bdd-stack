@@ -50,6 +50,11 @@ RSpec.describe Stack do
 
   describe "#pop" do
     subject { stack.pop }
+
+    context "空の stack" do
+      it { expect{subject}.to raise_error StandardError }
+    end
+
     context "1 と 5 を push済みのstack" do
       before do
         stack.push 1
@@ -59,4 +64,5 @@ RSpec.describe Stack do
       it { expect(subject).to eq 5 }
     end
   end
+
 end
