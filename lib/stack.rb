@@ -4,7 +4,7 @@ class Stack
   end
 
   def push(value)
-    @buffer.push(value)
+    @buffer.push value
     self
   end
 
