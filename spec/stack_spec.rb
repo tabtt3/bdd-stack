@@ -47,4 +47,10 @@ RSpec.describe Stack do
       it { expect(subject).to eq 2 }
     end
   end
+
+  describe "#pop" do
+    subject { stack.pop }
+
+    it { expect(subject).to eq stack }
+  end
 end
