@@ -8,6 +8,10 @@ class Stack
     self
   end
 
+  def pop
+    @buffer.pop
+  end
+
   def length
     @buffer.length
   end
