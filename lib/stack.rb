@@ -9,6 +9,7 @@ class Stack
   end
 
   def pop
+    raise StandardError if empty?
     @buffer.pop
   end
 
@@ -17,6 +18,7 @@ class Stack
   end
 
   def empty?
+    return false if length > 0
     true
   end
 end
